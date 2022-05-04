@@ -1,0 +1,43 @@
+{{ 'pruebaOlger.css' | asset_url | stylesheet_tag }}
+{%- liquid 
+
+assign money_price = Price | money_with_currency
+%}
+
+{%for product in collections%}
+<h1>{{product.title}}</h1>
+
+  <ul class="nav">
+    {%for p in product.products%}
+    <li>
+      
+      <div>
+        	<img 
+     srcset="{%- if p.featured_image.width >= 165 -%}{{ p.featured_image | img_url: '165x' }} 165w,{%- endif -%}
+     {%- if p.featured_image.width >= 360 -%}{{ p.featured_image | img_url: '360x' }} 360w,{%- endif -%}
+     {%- if p.featured_image.width >= 535 -%}{{ p.featured_image | img_url: '535x' }} 535w,{%- endif -%}
+     {%- if p.featured_image.width >= 750 -%}{{ p.featured_image | img_url: '750x' }} 750w,{%- endif -%}
+     {%- if p.featured_image.width >= 1000 -%}{{ p.featured_image | img_url: '1000x' }} 1000w,{%- endif -%}
+     {%- if p.featured_image.width >= 1500 -%}{{ p.featured_image | img_url: '1500x' }} 1500w,{%- endif -%}
+     {{ p.featured_image | img_url: 'master' }} {{ p.featured_image.width }}w"
+     src="{{ p.featured_image | img_url: '1500x' }}"
+     sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 3 }}px, (min-width: 750px) calc((100vw - 130px) / 3), calc(100vw - 30px)"
+     alt="{{ collection.title | escape }}"
+     height="{{ collection.featured_image.height }}"
+     width="{{ collection.featured_image.width }}"
+     loading="lazy"
+	>
+      </div>
+      <label>{{p.title}}</label>
+      <p>{{p.description}}</p>
+      <label>{{p.price | money_with_currency}} {{ money_price }} </label>
+      
+    </li>
+	
+    {%endfor%}
+    {%else%}
+		<p>No se encontro nada</p>
+  </ul>
+
+
+{%endfor%}

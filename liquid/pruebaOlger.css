@@ -1,0 +1,39 @@
+ul.nav {
+    padding-left: 0px;
+    height:120vh;
+  }
+  ul.nav > li {
+      display: grid;
+      padding: 10px 20px;
+      background-color: #33302F;
+      width: 30%;
+      margin-left: 2%;
+      margin-bottom: 15px;
+    
+  }
+  
+  p{
+    color:white;
+    font-size:12px;
+    text-align:left;
+  }
+  
+  label{
+    color:white;
+    font-size:16px;
+    text-align:left !important;
+    align-content:left;
+  }
+  
+  ul.nav > li:hover {
+    background-color: #2779BF;
+  }
+  ul.nav > li > a {
+    color: white;
+    text-decoration: none;
+    
+  }
+  
+  img{
+    width:100%;
+  }
